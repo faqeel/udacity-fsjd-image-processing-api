@@ -27,8 +27,6 @@ ensure that it contains the following variables:
 |------------|--------------------------------------------------------------|
 | HOST       | The hostname. (e.g. http://localhost)                        |
 | PORT       | The port number to be listened to. (default value is `3000`) |
-| INPUT_DIR  | The absolute path to the images directory.                   |
-| OUTPUT_DIR | The absolute path to the thumb directory.                    |
 
 See the [.env.example](./.env.example) file for more details.
 
