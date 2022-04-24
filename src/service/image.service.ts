@@ -1,7 +1,6 @@
 import path from 'path';
 import sharp from 'sharp';
 
-import { INPUT_DIR, OUTPUT_DIR } from '../config';
 import * as FileUtils from '../utils/fileUtils';
 
 const resizeImage = async (
@@ -11,25 +10,26 @@ const resizeImage = async (
 ): Promise<string | number> => {
     console.log(`Resizing ${filename} image to be ${width}x${height}...`);
 
-    const source: string = path.join(INPUT_DIR, filename);
+    const source: string = path.join(
+        __dirname,
+        path.relative(__dirname, './images'),
+        filename
+    );
     const thumb: string = path.join(
-        OUTPUT_DIR,
+        __dirname,
+        path.relative(__dirname, './images'),
+        'thumb',
         _generateThumbName(filename, width, height)
     );
 
-    if (!INPUT_DIR || !OUTPUT_DIR) {
-        console.warn('Input or output directories have not been initialized');
+    if (!filename) {
+        console.warn('The file name is invalid');
         return -1;
     }
 
-    if (!filename) {
-        console.warn('The file name is invalid');
-        return -2;
-    }
-
     if (!FileUtils.isFileExists(source)) {
-        console.warn(`${filename} not found in the '${INPUT_DIR}'`);
-        return -3;
+        console.warn(`${filename} not found'`);
+        return -2;
     }
 
     if (!width || width < 0 || !height || height < 0) {

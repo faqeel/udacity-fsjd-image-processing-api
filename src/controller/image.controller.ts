@@ -22,18 +22,11 @@ const resizeImage = async (
     );
 
     if (image === -1) {
-        response
-            .status(StatusCodes.INTERNAL_SERVER_ERROR)
-            .send('Oops. Something went wrong.');
-        return;
-    }
-
-    if (image === -2) {
         response.status(StatusCodes.BAD_REQUEST).send('Invalid file name');
         return;
     }
 
-    if (image === -3) {
+    if (image === -2) {
         response.status(StatusCodes.NOT_FOUND).send('Sorry! No image found');
         return;
     }
