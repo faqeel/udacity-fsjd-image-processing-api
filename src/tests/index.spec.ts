@@ -3,7 +3,6 @@ import path from 'path';
 
 import app from '../index';
 import * as imageService from '../service/image.service';
-import { INPUT_DIR, OUTPUT_DIR } from '../config';
 
 const request = supertest(app);
 
@@ -57,12 +56,25 @@ describe('Image Processing', () => {
     it('should return the original image path when invalid width or height is passed', async () => {
         expect(
             await imageService.resizeImage('encenadaport.jpg', -100, 100)
-        ).toEqual(path.join(INPUT_DIR, 'encenadaport.jpg'));
+        ).toEqual(
+            path.join(
+                __dirname,
+                path.relative(__dirname, './images'),
+                'encenadaport.jpg'
+            )
+        );
     });
 
     it('it should return the resized image path when the process success', async () => {
         expect(
             await imageService.resizeImage('encenadaport.jpg', 200, 200)
-        ).toEqual(path.join(OUTPUT_DIR, 'encenadaport-200x200.jpg'));
+        ).toEqual(
+            path.join(
+                __dirname,
+                path.relative(__dirname, './images'),
+                'thumb',
+                'encenadaport-200x200.jpg'
+            )
+        );
     });
 });
