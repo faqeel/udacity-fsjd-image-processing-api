@@ -31,6 +31,13 @@ const resizeImage = async (
         return;
     }
 
+    if (image === -3) {
+        response
+            .status(StatusCodes.BAD_REQUEST)
+            .send('Invalid width/height parameters');
+        return;
+    }
+
     response.status(StatusCodes.OK).sendFile(image as string);
 };
 

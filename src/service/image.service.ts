@@ -34,7 +34,7 @@ const resizeImage = async (
 
     if (!width || width < 0 || !height || height < 0) {
         console.warn('The dimensions are invalid');
-        return source;
+        return -3;
     }
 
     await sharp(source).resize(width, height).toFile(thumb);
