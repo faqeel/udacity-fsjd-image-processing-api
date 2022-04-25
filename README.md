@@ -56,7 +56,7 @@ npm run dev
 ### Example
 
 ```
-http://localhost:3000/api/images?filename=encenadaport&width=600&height=600
+http://localhost:3000/api/images?filename=encenadaport.jpg&width=600&height=600
 ```
 
 ## License
